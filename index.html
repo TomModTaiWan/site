@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
 <title>TomModTaiWan</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -17,36 +28,111 @@ html,
 body {
     width: 100%;
     min-height: 100%;
-    overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    color: #fff;
-    background: #000;
+    background: #050509;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
-/* VIDEO NỀN */
+
+/* =========================
+   VIDEO NỀN
+========================= */
+
 .background-video {
     position: fixed;
     inset: 0;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     z-index: -10;
 }
 
-.overlay {
+.background-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, .18);
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(255, 0, 60, .08),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, .15),
+            rgba(0, 0, 0, .38)
+        );
+
     z-index: -5;
 }
 
-/* PROFILE */
+
+/* =========================
+   ÁNH SÁNG CHUYỂN ĐỘNG
+========================= */
+
+.light {
+    position: fixed;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 220, 255, .13),
+            transparent 70%
+        );
+
+    filter: blur(15px);
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    animation: floatingLight 8s ease-in-out infinite;
+}
+
+.light.one {
+    top: 10%;
+    left: -100px;
+}
+
+.light.two {
+    right: -100px;
+    bottom: 15%;
+
+    animation-delay: -4s;
+}
+
+@keyframes floatingLight {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
 .profile {
     position: relative;
-    z-index: 2;
 
     width: 100%;
     min-height: 100vh;
@@ -55,269 +141,470 @@ body {
     flex-direction: column;
     align-items: center;
 
-    padding: 45px 16px 90px;
+    padding:
+        48px
+        16px
+        80px;
+
+    z-index: 2;
 }
 
-/* AVATAR */
-.avatar {
-    width: 105px;
-    height: 105px;
 
-    object-fit: cover;
-    border-radius: 50%;
+/* =========================
+   AVATAR
+========================= */
 
-    border: 3px solid rgba(255,255,255,.95);
+.avatar-box {
+    position: relative;
 
-    background: #111;
+    width: 112px;
+    height: 112px;
 
-    box-shadow:
-        0 0 8px rgba(255,255,255,.8),
-        0 0 22px rgba(255,255,255,.35),
-        0 5px 25px rgba(0,0,0,.7);
-}
-
-/* TÊN */
-.name-row {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    gap: 7px;
-    margin-top: 13px;
 }
 
-.name {
-    font-size: 26px;
-    font-weight: 800;
-    color: #fff;
+.avatar-box::before {
+    content: "";
 
-    text-shadow:
-        0 2px 8px rgba(0,0,0,.95),
-        0 0 3px rgba(255,255,255,.35);
-}
+    position: absolute;
 
-/* TÍCH XANH */
-.verified {
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #1d9bf0;
-    color: #fff;
+    width: 112px;
+    height: 112px;
 
     border-radius: 50%;
 
-    font-size: 13px;
+    background:
+        conic-gradient(
+            #00eaff,
+            #ffffff,
+            #8b5cff,
+            #00eaff
+        );
+
+    animation: avatarGlow 4s linear infinite;
+
+    filter:
+        drop-shadow(0 0 6px rgba(0,234,255,.9))
+        drop-shadow(0 0 18px rgba(0,234,255,.45));
+}
+
+.avatar-box::after {
+    content: "";
+
+    position: absolute;
+
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    background: #050509;
+}
+
+.avatar {
+    position: relative;
+
+    width: 101px;
+    height: 101px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    z-index: 2;
+
+    border: 2px solid white;
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,.8),
+        0 0 22px rgba(0,220,255,.35);
+}
+
+@keyframes avatarGlow {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================
+   TÊN
+========================= */
+
+.name-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 15px;
+}
+
+.name {
+    font-size: 27px;
+
+    font-weight: 850;
+
+    color: white;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.95),
+        0 0 14px rgba(255,255,255,.18);
+}
+
+
+/* =========================
+   TÍCH XANH
+========================= */
+
+.verified {
+    width: 21px;
+    height: 21px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #1d9bf0;
+
+    color: white;
+
+    font-size: 14px;
     font-weight: 900;
+
     line-height: 1;
 
     box-shadow:
-        0 2px 7px rgba(29,155,240,.45),
-        0 0 8px rgba(29,155,240,.25);
+        0 0 7px rgba(29,155,240,.8),
+        0 0 15px rgba(29,155,240,.35);
 }
 
-/* BIO */
+
+/* =========================
+   BIO
+========================= */
+
 .bio {
-    margin-top: 8px;
+    margin-top: 9px;
 
     font-size: 15px;
-    color: #fff;
 
     text-align: center;
+
+    color: rgba(255,255,255,.96);
 
     text-shadow:
         0 2px 8px rgba(0,0,0,.95);
 }
 
-/* CÁC LINK */
-.links {
-    width: min(360px, 88vw);
 
-    margin-top: 24px;
+/* =========================
+   TRẠNG THÁI
+========================= */
+
+.status {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 12px;
+
+    padding: 6px 13px;
+
+    border: 1px solid rgba(0,255,180,.35);
+
+    border-radius: 30px;
+
+    background:
+        rgba(0,30,25,.42);
+
+    backdrop-filter: blur(10px);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #00ff9d;
+
+    box-shadow:
+        0 0 8px #00ff9d;
+
+    animation: statusPulse 1.5s infinite;
+}
+
+.status-text {
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    color: #baffea;
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .45;
+        transform: scale(.7);
+    }
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+.links {
+    width: min(380px, 90vw);
 
     display: flex;
     flex-direction: column;
 
-    gap: 11px;
+    gap: 12px;
+
+    margin-top: 25px;
 }
 
-/* NÚT LINK */
+
+/* =========================
+   LINK BUTTON
+========================= */
+
 .link {
     position: relative;
 
+    min-height: 55px;
+
     width: 100%;
-    min-height: 54px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    padding: 12px 18px;
+    padding: 12px 20px;
 
-    color: #fff;
+    overflow: hidden;
+
     text-decoration: none;
 
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .2px;
+    color: white;
 
-    border: 1.5px solid rgba(0,229,255,.85);
-    border-radius: 22px;
+    font-size: 15px;
+
+    font-weight: 750;
+
+    letter-spacing: .3px;
+
+    border-radius: 19px;
+
+    border:
+        1px solid
+        rgba(0,229,255,.78);
 
     background:
         linear-gradient(
-            135deg,
-            rgba(15,35,70,.72),
-            rgba(70,25,100,.58)
+            120deg,
+            rgba(5,35,75,.76),
+            rgba(75,20,90,.66),
+            rgba(20,50,85,.72)
         );
 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
 
     box-shadow:
-        0 0 8px rgba(0,229,255,.45),
-        inset 0 0 10px rgba(0,229,255,.08);
+        0 0 8px rgba(0,229,255,.38),
+        inset 0 0 14px rgba(255,255,255,.04);
 
     text-shadow:
-        0 1px 5px rgba(0,0,0,.9);
-
-    overflow: hidden;
+        0 2px 6px rgba(0,0,0,.9);
 
     transition:
         transform .18s ease,
         box-shadow .18s ease,
-        background .18s ease;
+        border-color .18s ease;
 }
 
-/* ÁNH SÁNG CHẠY */
+
+/* ánh sáng chạy ngang */
+
 .link::before {
     content: "";
 
     position: absolute;
-    top: 0;
-    left: -120%;
 
-    width: 70%;
+    top: 0;
+    left: -130%;
+
+    width: 65%;
     height: 100%;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.25),
+            rgba(255,255,255,.28),
             transparent
         );
 
-    transform: skewX(-20deg);
+    transform: skewX(-22deg);
 
-    transition: left .55s ease;
+    transition: left .6s ease;
 
     pointer-events: none;
 }
 
-.link:hover::before,
-.link:focus::before {
+.link:hover::before {
     left: 150%;
 }
 
-/* CHẠM */
-.link:active {
-    transform: scale(.96);
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,229,255,.25),
-            rgba(140,60,255,.25)
-        );
+/* viền sáng */
+
+.link:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(0,238,255,1);
 
     box-shadow:
-        0 0 10px rgba(0,229,255,.75),
-        0 0 22px rgba(0,229,255,.3),
-        inset 0 0 14px rgba(255,255,255,.12);
+        0 0 12px rgba(0,229,255,.65),
+        0 0 25px rgba(0,229,255,.2),
+        inset 0 0 18px rgba(0,229,255,.08);
 }
 
-/* HIỆU ỨNG RIPPLE */
+
+/* khi chạm */
+
+.link:active {
+    transform: scale(.95);
+
+    box-shadow:
+        0 0 15px rgba(0,229,255,.85),
+        inset 0 0 20px rgba(0,229,255,.15);
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.link-icon {
+    position: absolute;
+
+    left: 17px;
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   RIPPLE
+========================= */
+
 .ripple {
     position: absolute;
 
     border-radius: 50%;
 
+    background:
+        rgba(255,255,255,.3);
+
     transform: scale(0);
 
-    animation: rippleEffect .55s linear;
-
-    background: rgba(255,255,255,.3);
+    animation:
+        ripple .55s linear;
 
     pointer-events: none;
 }
 
-@keyframes rippleEffect {
+@keyframes ripple {
+
     to {
         transform: scale(5);
         opacity: 0;
     }
 }
 
-/* NÚT NHẠC */
-.music-button {
-    position: fixed;
 
-    right: 16px;
-    bottom: 16px;
+/* =========================
+   FOOTER
+========================= */
 
-    width: 48px;
-    height: 48px;
+.footer {
+    margin-top: 25px;
 
-    border-radius: 50%;
+    font-size: 10px;
 
-    border: 1px solid rgba(0,210,255,.85);
+    letter-spacing: 1px;
 
-    background: rgba(0,20,40,.78);
+    color:
+        rgba(255,255,255,.55);
 
-    color: #fff;
-
-    font-size: 19px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    z-index: 20;
-
-    box-shadow:
-        0 0 8px rgba(0,190,255,.7),
-        0 0 18px rgba(0,130,255,.35);
-
-    transition:
-        transform .15s ease,
-        box-shadow .15s ease;
+    text-shadow:
+        0 2px 6px rgba(0,0,0,.9);
 }
 
-.music-button:active {
-    transform: scale(.88);
 
-    box-shadow:
-        0 0 15px rgba(0,220,255,1),
-        0 0 30px rgba(0,150,255,.8);
-}
+/* =========================
+   MOBILE
+========================= */
 
-/* MOBILE */
 @media (max-width: 480px) {
 
     .profile {
-        padding-top: 38px;
+        padding-top: 40px;
+    }
+
+    .avatar-box,
+    .avatar-box::before {
+        width: 105px;
+        height: 105px;
+    }
+
+    .avatar-box::after {
+        width: 98px;
+        height: 98px;
     }
 
     .avatar {
-        width: 100px;
-        height: 100px;
+        width: 94px;
+        height: 94px;
     }
 
     .name {
@@ -329,23 +616,34 @@ body {
     }
 
     .links {
-        width: min(360px, 88vw);
+        width: 90vw;
+
         gap: 11px;
+
         margin-top: 22px;
     }
 
     .link {
         min-height: 54px;
+
         font-size: 15px;
-        border-radius: 22px;
+
+        border-radius: 19px;
     }
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- VIDEO NỀN -->
+
+<!-- =========================
+     VIDEO
+========================= -->
+
 <video
     class="background-video"
     autoplay
@@ -354,23 +652,42 @@ body {
     playsinline
     preload="auto"
 >
+
     <source
         src="tiktok_video_no_watermark.mp4"
         type="video/mp4"
     >
+
 </video>
 
-<div class="overlay"></div>
+
+<div class="background-overlay"></div>
+
+<div class="light one"></div>
+<div class="light two"></div>
 
 
-<!-- PROFILE -->
+<!-- =========================
+     PROFILE
+========================= -->
+
 <main class="profile">
 
-    <img
-        class="avatar"
-        src="avatar.png"
-        alt="TomModTaiWan"
-    >
+
+    <!-- AVATAR -->
+
+    <div class="avatar-box">
+
+        <img
+            class="avatar"
+            src="avatar.png"
+            alt="TomModTaiWan"
+        >
+
+    </div>
+
+
+    <!-- NAME -->
 
     <div class="name-row">
 
@@ -385,13 +702,31 @@ body {
 
     </div>
 
+
+    <!-- BIO -->
+
     <p class="bio">
         TomModTaiWan. Xin Kính Chào Bạn.
     </p>
 
 
+    <!-- STATUS -->
+
+    <div class="status">
+
+        <span class="status-dot"></span>
+
+        <span class="status-text">
+            ONLINE • WELCOME
+        </span>
+
+    </div>
+
+
     <!-- LINKS -->
+
     <div class="links">
+
 
         <a
             class="link"
@@ -399,8 +734,15 @@ body {
             target="_blank"
             rel="noopener noreferrer"
         >
+
+            <span class="link-icon">
+                f
+            </span>
+
             Facebook
+
         </a>
+
 
         <a
             class="link"
@@ -408,8 +750,15 @@ body {
             target="_blank"
             rel="noopener noreferrer"
         >
+
+            <span class="link-icon">
+                ♪
+            </span>
+
             TikTok
+
         </a>
+
 
         <a
             class="link"
@@ -417,8 +766,15 @@ body {
             target="_blank"
             rel="noopener noreferrer"
         >
+
+            <span class="link-icon">
+                ♫
+            </span>
+
             Discord
+
         </a>
+
 
         <a
             class="link"
@@ -426,8 +782,15 @@ body {
             target="_blank"
             rel="noopener noreferrer"
         >
+
+            <span class="link-icon">
+                ➤
+            </span>
+
             Telegram
+
         </a>
+
 
         <a
             class="link"
@@ -435,107 +798,169 @@ body {
             target="_blank"
             rel="noopener noreferrer"
         >
+
+            <span class="link-icon">
+                🔗
+            </span>
+
             Link Bio
+
         </a>
 
+
     </div>
+
+
+    <div class="footer">
+        © TomModTaiWan
+    </div>
+
 
 </main>
 
 
-<!-- NÚT NHẠC -->
-<button
-    class="music-button"
-    id="musicButton"
-    aria-label="Bật hoặc tắt nhạc"
->
-    🔇
-</button>
+<!-- =========================
+     MUSIC
+========================= -->
 
 <audio
     id="music"
+    autoplay
     loop
     preload="auto"
 >
+
     <source
         src="tiktok_mp3.mp3"
         type="audio/mpeg"
     >
+
 </audio>
 
 
 <script>
 
-/* RIPPLE KHI NHẤN LINK */
-document.querySelectorAll(".link").forEach(function(button) {
+/* =========================
+   RIPPLE
+========================= */
 
-    button.addEventListener("click", function(event) {
+document
+.querySelectorAll(".link")
+.forEach(function(button) {
 
-        const circle = document.createElement("span");
+    button.addEventListener(
+        "click",
+        function(event) {
 
-        const rect = button.getBoundingClientRect();
+            const rect =
+                button.getBoundingClientRect();
 
-        const size = Math.max(
-            rect.width,
-            rect.height
-        );
+            const size =
+                Math.max(
+                    rect.width,
+                    rect.height
+                );
 
-        circle.classList.add("ripple");
+            const ripple =
+                document.createElement("span");
 
-        circle.style.width = size + "px";
-        circle.style.height = size + "px";
+            ripple.className = "ripple";
 
-        circle.style.left =
-            (event.clientX - rect.left - size / 2) + "px";
+            ripple.style.width =
+                size + "px";
 
-        circle.style.top =
-            (event.clientY - rect.top - size / 2) + "px";
+            ripple.style.height =
+                size + "px";
 
-        button.appendChild(circle);
+            ripple.style.left =
+                (
+                    event.clientX
+                    -
+                    rect.left
+                    -
+                    size / 2
+                ) + "px";
 
-        setTimeout(function() {
-            circle.remove();
-        }, 600);
+            ripple.style.top =
+                (
+                    event.clientY
+                    -
+                    rect.top
+                    -
+                    size / 2
+                ) + "px";
 
-    });
+            button.appendChild(ripple);
+
+            setTimeout(function() {
+
+                ripple.remove();
+
+            }, 600);
+
+        }
+    );
 
 });
 
 
-/* NHẠC */
+/* =========================
+   AUTO MUSIC
+========================= */
+
 const music =
     document.getElementById("music");
 
-const musicButton =
-    document.getElementById("musicButton");
 
-musicButton.addEventListener("click", function() {
+function startMusic() {
 
-    if (music.paused) {
+    music.volume = 1;
 
-        music.play()
-            .then(function() {
+    music.play()
+    .catch(function() {
 
-                musicButton.textContent = "🔊";
+        console.log(
+            "Autoplay bị trình duyệt chặn."
+        );
 
-            })
-            .catch(function() {
+    });
 
-                musicButton.textContent = "🔇";
+}
 
-            });
 
-    } else {
+/* thử phát ngay */
 
-        music.pause();
+window.addEventListener(
+    "load",
+    function() {
 
-        musicButton.textContent = "🔇";
+        startMusic();
 
     }
+);
 
-});
+
+/* nếu trình duyệt chặn,
+   chạm lần đầu sẽ phát */
+
+document.addEventListener(
+    "pointerdown",
+    function() {
+
+        if (music.paused) {
+
+            startMusic();
+
+        }
+
+    },
+    {
+        once: true
+    }
+);
 
 </script>
+
 
 </body>
     </html>
