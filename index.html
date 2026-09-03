@@ -1,3 +1,334 @@
-<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TomMod | tommod.no1</title><style>
-*{box-sizing:border-box}body{margin:0;color:#fff;font-family:Arial,sans-serif;background:#07030f}a{text-decoration:none;color:inherit}.header{height:80px;padding:10px 12px;display:flex;align-items:center;gap:10px;background:#09040f;border-bottom:1px solid #8b43ff33}.menu{width:48px;height:48px;border:1px solid #9148ff66;border-radius:15px;background:#12091e;display:flex;align-items:center;justify-content:center}.menu i,.menu i:before,.menu i:after{content:"";display:block;width:24px;height:3px;background:#fff;border-radius:3px;position:relative}.menu i:before{position:absolute;top:-8px}.menu i:after{position:absolute;top:8px}.logo{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #984cff;box-shadow:0 0 16px #843cff88}.brand{flex:1}.brand b{font-size:18px}.brand b span{color:#168fff}.brand small{display:block;color:#a99db5;margin-top:4px;font-size:13px}.hero{text-align:center;padding:34px 16px 52px;background:radial-gradient(circle at 50% 20%,#6424b833,transparent 40%),#07030f}.avatarbox{width:115px;height:115px;margin:0 auto 28px;position:relative}.avatarbox:before{content:"";position:absolute;inset:-6px;border-radius:50%;background:linear-gradient(135deg,#c17cff,#6b25ed,#a34cff);box-shadow:0 0 30px #873cff99}.avatar{position:relative;width:115px;height:115px;object-fit:cover;border-radius:50%;border:5px solid #09040f}.hello{font-size:22px;color:#c5b8cf;margin-bottom:9px}.name{font-size:34px;font-weight:900}.check{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#168fff;font-size:17px;vertical-align:5px}.tag{font-size:18px;color:#b8acbf;margin:14px 0 0}.socials{max-width:620px;margin:30px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.social{height:68px;border:1px solid #9449ff66;border-radius:18px;background:linear-gradient(145deg,#1a0d2a,#0e0717);display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:700;box-shadow:0 0 18px #7131c51c}.social svg{width:24px;height:24px}.linkbio{grid-column:1/-1;height:58px;border-radius:16px;font-size:15px}.section{border-top:1px solid #9449ff22;padding:48px 18px 70px;max-width:720px;margin:auto;background:#07030f}.title{font-size:31px;font-weight:900;margin:0 0 25px}.title span{color:#a450ff}.card{padding:22px;border:1px solid #9449ff44;border-radius:22px;background:#12091d}.card p{font-size:17px;line-height:1.5;color:#c8bdce;margin:0 0 8px}.card strong{color:#b66cff}@media(max-width:560px){.header{height:78px}.brand b{font-size:17px}.brand small{font-size:12px}.hero{padding-top:30px}.avatarbox,.avatar{width:113px;height:113px}.name{font-size:32px}.tag{font-size:17px}.socials{gap:10px}.social{height:64px;font-size:12px}.linkbio{height:58px;font-size:14px}}
-</style></head><body><header class="header"><a class="menu" href="#collection"><i></i></a><img class="logo" src="avatar.png?v=2"><div class="brand"><b>TomMod <span>✓</span></b><small>tommod.no1</small></div></header><section class="hero"><div class="avatarbox"><img class="avatar" src="avatar.png?v=2"></div><div class="hello">TomMod Xin Chào</div><div class="name">TomMod <span class="check">✓</span></div><p class="tag">Nền tảng tiện ích của TomMod</p><div class="socials"><a class="social" href="https://t.me/THAY_LINK_TELEGRAM">✈️ Telegram</a><a class="social" href="https://www.facebook.com/share/1cQg31DP2L/">f&nbsp; Facebook</a><a class="social" href="https://www.tiktok.com/@tluocc_010">♪ TikTok</a><a class="social linkbio" href="#">🔗 Link Bio</a></div></section><section class="section" id="collection"><h2 class="title">Bộ Sưu Tập <span>Ứng dụng</span></h2><div class="card"><p>Chào mừng đến với website của <strong>TomMod</strong>.</p><p>Website: <strong>tommod.no1</strong></p></div></section></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>𝙏𝙤𝙢𝙈𝙤𝙙𝙏𝙖𝙞𝙒𝙖𝙣</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+    }
+
+    /* VIDEO BACKGROUND */
+    .video-background {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+    }
+
+    /* DARK OVERLAY */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.42);
+      z-index: -2;
+    }
+
+    /* MAIN */
+    .container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .profile {
+      width: min(420px, 94vw);
+      text-align: center;
+      color: white;
+      animation: fadeIn 1.2s ease;
+    }
+
+    /* AVATAR */
+    .avatar {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.95);
+      box-shadow:
+        0 0 20px rgba(255,255,255,0.35),
+        0 0 45px rgba(255,255,255,0.15);
+      margin-bottom: 18px;
+    }
+
+    /* NAME */
+    .name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+
+      text-shadow:
+        2px 2px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        0 0 12px rgba(255,255,255,0.35);
+
+      margin-bottom: 8px;
+    }
+
+    /* VERIFIED */
+    .verified {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: #1d9bf0;
+      border-radius: 50%;
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+      box-shadow: 0 0 8px rgba(29,155,240,0.5);
+    }
+
+    .verified::after {
+      content: "✓";
+      transform: translateY(-0.5px);
+    }
+
+    /* BIO */
+    .bio {
+      font-size: 14px;
+      opacity: 0.95;
+      margin-bottom: 22px;
+
+      text-shadow:
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
+    }
+
+    /* SOCIAL LINKS */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link {
+      display: block;
+      width: 100%;
+      padding: 14px 18px;
+
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 14px;
+
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .link:hover {
+      transform: translateY(-3px) scale(1.02);
+      background: rgba(255,255,255,0.16);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .link:active {
+      transform: scale(0.97);
+    }
+
+    /* MUSIC BUTTON */
+    .music-button {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+
+      width: 45px;
+      height: 45px;
+
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 50%;
+
+      background: rgba(0,0,0,0.5);
+      color: white;
+
+      cursor: pointer;
+      font-size: 18px;
+
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      z-index: 10;
+    }
+
+    .music-button:hover {
+      background: rgba(255,255,255,0.18);
+    }
+
+    /* FADE */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 480px) {
+      .avatar {
+        width: 135px;
+        height: 135px;
+      }
+
+      .name {
+        font-size: 21px;
+      }
+
+      .verified {
+        width: 18px;
+        height: 18px;
+        font-size: 12px;
+      }
+
+      .bio {
+        font-size: 13px;
+      }
+
+      .link {
+        padding: 13px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- VIDEO -->
+  <video
+    id="backgroundVideo"
+    class="video-background"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source src="background.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <!-- PROFILE -->
+  <main class="container">
+    <section class="profile">
+
+      <img
+        src="avatar.png"
+        alt="Avatar"
+        class="avatar"
+      >
+
+      <h1 class="name">
+        𝙏𝙤𝙢𝙈𝙤𝙙𝙏𝙖𝙞𝙒𝙖𝙣
+        <span class="verified"></span>
+      </h1>
+
+      <p class="bio">
+        Welcome to my profile ✨
+      </p>
+
+      <div class="links">
+
+        <a
+          class="link"
+          href="https://www.facebook.com/share/1cQg31DP2L/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Facebook
+        </a>
+
+        <a
+          class="link"
+          href="https://www.tiktok.com/@tluocc_010"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TikTok
+        </a>
+
+        <a
+          class="link"
+          href="https://discord.gg/xhc"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Discord
+        </a>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- MUSIC / VIDEO SOUND -->
+  <button
+    class="music-button"
+    id="musicButton"
+    aria-label="Bật hoặc tắt âm thanh"
+  >
+    🔇
+  </button>
+
+  <script>
+    const video = document.getElementById("backgroundVideo");
+    const musicButton = document.getElementById("musicButton");
+
+    musicButton.addEventListener("click", () => {
+      video.muted = !video.muted;
+
+      if (video.muted) {
+        musicButton.textContent = "🔇";
+      } else {
+        musicButton.textContent = "🔊";
+        video.play().catch(() => {});
+      }
+    });
+
+    // Đảm bảo video tự phát khi trình duyệt cho phép
+    video.play().catch(() => {});
+  </script>
+
+</body>
+  </html>
