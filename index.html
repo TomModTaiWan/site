@@ -1,342 +1,363 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TomModTaiWan</title>
 
-  <title>𝙏𝙤𝙢𝙈𝙤𝙙𝙏𝙖𝙞𝙒𝙖𝙣</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
 
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #000;
-    }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background: #000;
+}
 
-    /* VIDEO BACKGROUND */
-    .video-background {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -3;
-    }
+/* VIDEO NỀN */
+.background-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -3;
+}
 
-    /* DARK OVERLAY */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.42);
-      z-index: -2;
-    }
+/* LỚP PHỦ NHẸ */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: -2;
+}
 
-    /* MAIN */
-    .container {
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
+/* PROFILE */
+.profile {
+    position: relative;
+    z-index: 2;
 
-    .profile {
-      width: min(420px, 94vw);
-      text-align: center;
-      color: white;
-      animation: fadeIn 1.2s ease;
-    }
+    width: 100%;
+    min-height: 100vh;
 
-    /* AVATAR */
-    .avatar {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid rgba(255,255,255,0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-      box-shadow:
-        0 0 20px rgba(255,255,255,0.35),
-        0 0 45px rgba(255,255,255,0.15);
+    padding: 20px;
+}
 
-      margin-bottom: 18px;
-    }
+/* AVATAR */
+.avatar {
+    width: 105px;
+    height: 105px;
 
-    /* NAME */
-    .name {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
+    border-radius: 50%;
+    object-fit: cover;
 
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
+    border: 3px solid white;
 
-      text-shadow:
-        2px 2px 0 #000,
-        -2px -2px 0 #000,
-        2px -2px 0 #000,
-        -2px 2px 0 #000,
-        0 0 12px rgba(255,255,255,0.35);
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.6);
+}
 
-      margin-bottom: 8px;
-    }
+/* TÊN + TÍCH XANH */
+.name-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    /* VERIFIED */
-    .verified {
-      width: 20px;
-      height: 20px;
+    gap: 6px;
 
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+    margin-top: 12px;
+}
 
-      background: #1d9bf0;
-      border-radius: 50%;
-      color: white;
+.name {
+    font-size: 26px;
+    font-weight: 800;
 
-      font-size: 13px;
-      font-weight: bold;
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.9);
+}
 
-      box-shadow: 0 0 8px rgba(29,155,240,0.5);
-    }
+/* TÍCH XANH NHỎ */
+.verified {
+    width: 18px;
+    height: 18px;
 
-    .verified::after {
-      content: "✓";
-      transform: translateY(-0.5px);
-    }
+    min-width: 18px;
 
-    /* BIO */
-    .bio {
-      font-size: 14px;
-      opacity: 0.95;
-      margin-bottom: 22px;
+    border-radius: 50%;
 
-      text-shadow:
-        1px 1px 0 #000,
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000;
-    }
+    background: #1d9bf0;
 
-    /* SOCIAL LINKS */
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .link {
-      display: block;
-      width: 100%;
-      padding: 14px 18px;
+    color: white;
 
-      color: white;
-      text-decoration: none;
+    font-size: 12px;
+    font-weight: 900;
 
-      font-size: 15px;
-      font-weight: 700;
+    box-shadow:
+        0 1px 6px rgba(0, 0, 0, 0.5);
+}
 
-      background: rgba(0,0,0,0.45);
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: 14px;
+/* BIO */
+.bio {
+    margin-top: 7px;
 
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+    font-size: 15px;
 
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
-    }
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.9);
+}
 
-    .link:hover {
-      transform: translateY(-3px) scale(1.02);
-      background: rgba(255,255,255,0.16);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    }
+/* LINK */
+.links {
+    width: min(420px, 92vw);
 
-    .link:active {
-      transform: scale(0.97);
-    }
+    display: flex;
+    flex-direction: column;
 
-    /* MUSIC BUTTON */
-    .music-button {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
+    gap: 11px;
 
-      width: 45px;
-      height: 45px;
+    margin-top: 24px;
+}
 
-      border: 1px solid rgba(255,255,255,0.6);
-      border-radius: 50%;
+.link {
+    width: 100%;
+    height: 52px;
 
-      background: rgba(0,0,0,0.5);
-      color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-      cursor: pointer;
-      font-size: 18px;
+    color: white;
+    text-decoration: none;
 
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+    font-size: 16px;
+    font-weight: 700;
 
-      z-index: 10;
-    }
+    border-radius: 15px;
 
-    .music-button:hover {
-      background: rgba(255,255,255,0.18);
-    }
+    border: 1px solid rgba(255, 255, 255, 0.3);
 
-    /* FADE */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
+    background: rgba(0, 0, 0, 0.38);
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    backdrop-filter: blur(8px);
 
-    /* MOBILE */
-    @media (max-width: 480px) {
-      .avatar {
-        width: 135px;
-        height: 135px;
-      }
+    text-shadow:
+        0 1px 5px rgba(0, 0, 0, 0.9);
 
-      .name {
-        font-size: 21px;
-      }
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.25);
 
-      .verified {
-        width: 18px;
-        height: 18px;
-        font-size: 12px;
-      }
+    transition: 0.2s;
+}
 
-      .bio {
-        font-size: 13px;
-      }
+.link:hover {
+    transform: scale(1.025);
+    background: rgba(255, 255, 255, 0.18);
+}
 
-      .link {
-        padding: 13px 15px;
-      }
-    }
-  </style>
+/* NÚT NHẠC */
+.music-button {
+    position: fixed;
+
+    right: 18px;
+    bottom: 18px;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    background: rgba(0, 0, 0, 0.55);
+
+    color: white;
+
+    font-size: 19px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- VIDEO -->
-  <video
-    id="backgroundVideo"
-    class="video-background"
+<!-- VIDEO NỀN -->
+<video
+    class="background-video"
     autoplay
     muted
     loop
     playsinline
-    preload="auto"
-  >
-    <source src="tiktok_video_no_watermark.mp4" type="video/mp4">
-  </video>
+>
+    <source
+        src="tiktok_video_no_watermark.mp4"
+        type="video/mp4"
+    >
+</video>
 
-  <div class="overlay"></div>
+<div class="overlay"></div>
 
-  <!-- PROFILE -->
-  <main class="container">
-    <section class="profile">
 
-      <img
-        src="avatar.png"
-        alt="Avatar"
+<!-- PROFILE -->
+<main class="profile">
+
+    <!-- AVATAR -->
+    <img
         class="avatar"
-      >
+        src="avatar.jpg"
+        alt="TomModTaiWan"
+    >
 
-      <h1 class="name">
-        𝙏𝙤𝙢𝙈𝙤𝙙𝙏𝙖𝙞𝙒𝙖𝙣
-        <span class="verified"></span>
-      </h1>
 
-      <p class="bio">
+    <!-- TÊN -->
+    <div class="name-row">
+
+        <span class="name">
+            TomModTaiWan
+        </span>
+
+        <span
+            class="verified"
+            title="Verified"
+        >
+            ✓
+        </span>
+
+    </div>
+
+
+    <!-- BIO -->
+    <p class="bio">
         Welcome to my profile ✨
-      </p>
+    </p>
 
-      <div class="links">
 
-        <a
-          class="link"
-          href="https://www.facebook.com/share/1cQg31DP2L/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Facebook
-        </a>
+    <!-- CÁC LINK -->
+    <div class="links">
 
         <a
-          class="link"
-          href="https://www.tiktok.com/@tluocc_010"
-          target="_blank"
-          rel="noopener noreferrer"
+            class="link"
+            href="https://www.facebook.com/share/1cQg31DP2L/"
+            target="_blank"
+            rel="noopener noreferrer"
         >
-          TikTok
+            Facebook
         </a>
+
 
         <a
-          class="link"
-          href="https://discord.gg/xhc"
-          target="_blank"
-          rel="noopener noreferrer"
+            class="link"
+            href="https://www.tiktok.com/@tluocc_010"
+            target="_blank"
+            rel="noopener noreferrer"
         >
-          Discord
+            TikTok
         </a>
 
-      </div>
 
-    </section>
-  </main>
+        <a
+            class="link"
+            href="https://discord.gg/xhc"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Discord
+        </a>
 
-  <!-- MUSIC / VIDEO SOUND -->
-  <button
+
+        <a
+            class="link"
+            href="https://t.me/tluoc_09"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Telegram
+        </a>
+
+
+        <a
+            class="link"
+            href="https://linkbio.co/8070700OwKBiF"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Link Bio
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- NÚT NHẠC -->
+<button
     class="music-button"
     id="musicButton"
-    aria-label="Bật hoặc tắt âm thanh"
-  >
+>
     🔇
-  </button>
+</button>
 
-  <script>
-    const video = document.getElementById("backgroundVideo");
-    const musicButton = document.getElementById("musicButton");
 
-    musicButton.addEventListener("click", () => {
-      video.muted = !video.muted;
+<audio
+    id="music"
+    loop
+>
+    <source
+        src="music.mp3"
+        type="audio/mpeg"
+    >
+</audio>
 
-      if (video.muted) {
-        musicButton.textContent = "🔇";
-      } else {
-        musicButton.textContent = "🔊";
-        video.play().catch(() => {});
-      }
-    });
 
-    video.play().catch(() => {});
-  </script>
+<script>
+
+const music =
+    document.getElementById("music");
+
+const button =
+    document.getElementById("musicButton");
+
+
+button.addEventListener("click", function () {
+
+    if (music.paused) {
+
+        music.play();
+
+        button.textContent = "🔊";
+
+    } else {
+
+        music.pause();
+
+        button.textContent = "🔇";
+
+    }
+
+});
+
+</script>
 
 </body>
-  </html>
+</html>
