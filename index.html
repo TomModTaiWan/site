@@ -124,6 +124,33 @@ body {
    TÍCH XANH
 ========================= */
 
+.verified {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-left: 6px;
+
+    background: #1d9bf0;
+    color: #fff;
+    border-radius: 50%;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1;
+
+    box-shadow:
+        0 2px 7px rgba(29, 155, 240, .45),
+        0 0 8px rgba(29, 155, 240, .25);
+}
+
+.verified::after {
+    content: "✓";
+}
 .links {
     width: min(360px, 88vw);
     margin: 0 auto;
