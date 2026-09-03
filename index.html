@@ -3,269 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TomModTaiWan | Profile</title>
-
+<title>TomMod | Profile</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-    font-family:Arial,sans-serif;
-    color:white;
-    min-height:100vh;
-    background:
-    radial-gradient(circle at 50% 15%,rgba(0,229,255,.16),transparent 35%),
-    radial-gradient(circle at 10% 90%,rgba(120,70,255,.12),transparent 30%),
-    #080b12;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(circle at 50% 20%,rgba(126,55,255,.18),transparent 35%),
+    radial-gradient(circle at 10% 90%,rgba(75,0,180,.16),transparent 35%),
+    #070312;
 }
-
-a{
-    text-decoration:none;
-    color:inherit;
+.header{
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;gap:14px;
+  padding:16px 20px;
+  background:rgba(13,6,32,.88);
+  border-bottom:1px solid rgba(150,90,255,.18);
+  backdrop-filter:blur(14px);
 }
-
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index:10;
-    padding:16px 5%;
-    background:rgba(8,11,18,.75);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(255,255,255,.08);
+.menu{
+  width:48px;height:48px;border-radius:15px;
+  display:grid;place-items:center;
+  font-size:25px;background:#10082a;
+  border:1px solid rgba(170,110,255,.18);
 }
-
-.nav-inner{
-    max-width:920px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
 .logo{
-    font-size:21px;
-    font-weight:bold;
-    color:#00e5ff;
+  width:46px;height:46px;border-radius:50%;
+  object-fit:cover;border:2px solid rgba(170,100,255,.5);
 }
-
-nav a{
-    color:#aaa;
-    margin-left:20px;
-    font-size:14px;
+.brand{flex:1}
+.brand b{display:block;font-size:18px}
+.brand span{color:#9b8ab7;font-size:13px}
+.telegram{
+  text-decoration:none;color:#fff;font-weight:700;
+  padding:13px 18px;border-radius:15px;
+  background:linear-gradient(135deg,#7b3cff,#5d46ff);
+  box-shadow:0 8px 28px rgba(105,60,255,.28);
 }
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:110px 20px 70px;
-}
-
-.card{
-    width:min(720px,100%);
-    padding:42px 24px;
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:28px;
-    background:rgba(255,255,255,.045);
-    box-shadow:0 20px 70px rgba(0,0,0,.35);
-}
-
+.hero{text-align:center;padding:72px 20px 58px}
 .avatar{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    margin:0 auto 20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    font-weight:bold;
-    background:linear-gradient(135deg,#00e5ff,#7b61ff);
-    box-shadow:0 0 45px rgba(0,229,255,.25);
+  width:155px;height:155px;
+  object-fit:cover;border-radius:50%;
+  display:block;margin:0 auto 25px;
+  border:5px solid rgba(142,72,255,.7);
+  box-shadow:0 0 30px rgba(126,57,255,.45);
 }
-
-h1{
-    font-size:38px;
-    margin-bottom:8px;
+.hi{color:#9e91b8;font-size:22px;margin-bottom:12px}
+h1{font-size:42px;line-height:1.1;margin-bottom:14px}
+.verify{color:#1595ff;font-size:28px}
+.bio{
+  color:#a79abf;font-size:22px;
+  max-width:600px;margin:auto;
 }
-
-.subtitle{
-    color:#aaa;
-    margin-bottom:24px;
+.socials{
+  display:flex;justify-content:center;gap:18px;margin-top:30px;
 }
-
-.badge{
-    display:inline-block;
-    padding:8px 14px;
-    border-radius:999px;
-    color:#00e5ff;
-    background:rgba(0,229,255,.08);
-    border:1px solid rgba(0,229,255,.22);
-    font-size:13px;
-    margin-bottom:24px;
+.social{
+  width:64px;height:64px;border-radius:20px;
+  display:grid;place-items:center;
+  text-decoration:none;color:#fff;
+  font-weight:800;font-size:16px;
+  background:linear-gradient(145deg,#19102f,#0d071d);
+  border:1px solid rgba(160,100,255,.28);
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+  transition:.2s;
 }
-
-.links{
-    display:grid;
-    gap:13px;
+.social:hover{transform:translateY(-4px);border-color:#8d55ff}
+.fb{font-size:28px;color:#4795ff}
+.section{
+  max-width:900px;margin:auto;padding:55px 20px 80px;
+  border-top:1px solid rgba(150,90,255,.14);
 }
-
-.link{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    padding:15px 18px;
-    border-radius:15px;
-    background:#111722;
-    border:1px solid rgba(255,255,255,.08);
-    transition:.2s;
-    font-weight:bold;
+.section h2{
+  font-size:42px;line-height:1.15;margin-bottom:28px;
 }
-
-.link:hover{
-    transform:translateY(-2px);
-    border-color:#00e5ff;
-    color:#00e5ff;
+.section h2 span{
+  background:linear-gradient(90deg,#fff,#a05cff,#6250ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
 }
-
-.music{
-    margin-top:24px;
-    padding:18px;
-    border-radius:18px;
-    background:rgba(0,229,255,.06);
-    border:1px solid rgba(0,229,255,.12);
+.card{
+  padding:24px;border-radius:22px;
+  background:rgba(18,8,39,.72);
+  border:1px solid rgba(150,90,255,.18);
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
-
-.music p{
-    font-size:13px;
-    color:#aaa;
-    margin-bottom:10px;
-}
-
-audio{
-    width:100%;
-}
-
-footer{
-    text-align:center;
-    color:#666;
-    padding:30px 15px;
-    font-size:13px;
-}
-
+.card a{color:#c5a5ff;text-decoration:none}
 @media(max-width:600px){
-    h1{
-        font-size:30px;
-    }
-
-    .card{
-        padding:32px 18px;
-    }
-
-    nav a{
-        margin-left:10px;
-        font-size:12px;
-    }
+  .header{padding:13px 14px}
+  .telegram{padding:12px 13px;font-size:13px}
+  .avatar{width:135px;height:135px}
+  h1{font-size:34px}
+  .section h2{font-size:34px}
 }
 </style>
 </head>
-
 <body>
 
-<nav>
-    <div class="nav-inner">
-        <div class="logo">TomModTaiWan</div>
+<header class="header">
+  <div class="menu">☰</div>
+  <img class="logo" src="avatar.png" alt="TomMod">
+  <div class="brand">
+    <b>TomMod</b>
+    <span>tommod.no1</span>
+  </div>
+  <a class="telegram" href="https://t.me/" target="_blank">✈ Join Telegram</a>
+</header>
 
-        <div>
-            <a href="#home">Home</a>
-            <a href="#links">Links</a>
-        </div>
+<main>
+  <section class="hero">
+    <img class="avatar" src="avatar.png" alt="TomMod avatar">
+    <div class="hi">Hi, i am</div>
+    <h1>TomMod <span class="verify">✓</span></h1>
+    <div class="bio">Nền tảng tiện ích của TomMod</div>
+
+    <div class="socials">
+      <a class="social" href="https://t.me/" target="_blank" aria-label="Telegram">✈</a>
+      <a class="social fb" href="https://www.facebook.com/share/1cQg31DP2L/" target="_blank" aria-label="Facebook">f</a>
     </div>
-</nav>
+  </section>
 
-<main id="home" class="hero">
-
-<section class="card">
-
-    <div class="avatar">
-        TM
+  <section class="section">
+    <h2>Bộ Sưu Tập <span>Ứng dụng</span></h2>
+    <div class="card">
+      <p>Chào mừng đến với website của <b>TomMod</b>.</p>
+      <p style="margin-top:10px;color:#9f93b5">Website: <b style="color:#c7a9ff">tommod.no1</b></p>
     </div>
-
-    <h1>TomModTaiWan</h1>
-
-    <p class="subtitle">
-        Welcome to my personal profile ✨
-    </p>
-
-    <span class="badge">
-        ● ONLINE
-    </span>
-
-    <div id="links" class="links">
-
-        <a class="link"
-        href="https://www.facebook.com/share/1cQg31DP2L/"
-        target="_blank">
-        🔵 Facebook
-        </a>
-
-        <a class="link"
-        href="https://www.tiktok.com/@tluocc_010"
-        target="_blank">
-        🎵 TikTok
-        </a>
-
-        <a class="link"
-        href="https://discord.gg/xhc"
-        target="_blank">
-        💬 Discord
-        </a>
-
-        <a class="link"
-        href="https://t.me/YOUR_TELEGRAM"
-        target="_blank">
-        ✈️ Telegram
-        </a>
-
-        <a class="link"
-        href="https://linkbio.co/YOUR_LINKBIO"
-        target="_blank">
-        🔗 LinkBio
-        </a>
-
-    </div>
-
-    <div class="music">
-
-        <p>🎧 My Music</p>
-
-        <audio controls preload="none">
-            <source src="music.mp3" type="audio/mpeg">
-            Trình duyệt của bạn không hỗ trợ phát nhạc.
-        </audio>
-
-        <p>
-            Đặt file nhạc tên là music.mp3 trong repository
-            để phát nhạc.
-        </p>
-
-    </div>
-
-</section>
-
+  </section>
 </main>
 
-<footer>
-© 2026 TomModTaiWan • Made with ❤️
-</footer>
-
 </body>
-  </html>
+</html>
